@@ -15,7 +15,14 @@ function RootPage() {
           marginBottom: "2rem",
         }}
       >
-        <select value={selectValue} onChange={handleSelect}>
+        <select
+          value={selectValue}
+          onChange={handleSelect}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+          }}
+        >
           <option value="">Filtros</option>
           <option value="newest">Mais recente</option>
           <option value="oldest">Mais antiga</option>

@@ -7,12 +7,12 @@ export default function NavBarComponent({ children }: { children: ReactNode }) {
 
   return (
     <div>
-      <Navbar className="mb-4" color="black" dark>
+      <Navbar className="mb-4" style={{ backgroundColor: "black" }}>
         <NavbarBrand
           onClick={() => navigate("/")}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", color: "white" }}
         >
-          Blog EDIT
+          Blog <img src="/logo-edit.svg" alt="logo-longo" width="50%" />
         </NavbarBrand>
       </Navbar>
       {children}

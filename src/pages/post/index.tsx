@@ -1,52 +1,41 @@
-import { Container, Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { useState } from "react";
+import { Container } from "reactstrap";
+import { PostDetails } from "../../components/postDetails";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+interface PostProps {
+  id: string;
+  title: string;
+  imageUrl: string;
+  description: string;
+  createdAt: Date;
+}
 
-function CreatePost() {
-  const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [description, setDescription] = useState("");
+function PostPage() {
+  const [post, setPost] = useState<PostProps | undefined>();
+  const { id } = useParams();
 
-  const handleCreatePost = () => {
-    // Add logic to send data to the server or save it in a database
-    // For simplicity, we'll just log the data to the console
-    const newPost = { title, imageUrl, description };
-    console.log("New Post:", newPost);
-  };
+  useEffect(() => {
+    fetch("/posts.json")
+      .then((resp) => resp.json())
+      .then((resp: PostProps[]) => {
+        const currentPost = resp.find((item) => item.id === id);
+        setPost(currentPost);
+      });
+  }, [id]);
+
+  if (!post) {
+    return <div>Post não existe</div>;
+  }
 
   return (
     <Container>
-      <Form>
-        <FormGroup>
-          <Label for="title">Title</Label>
-          <Input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="imageUrl">Image URL</Label>
-          <Input
-            type="text"
-            id="imageUrl"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="description">Description</Label>
-          <Input
-            type="textarea"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </FormGroup>
-        <Button onClick={handleCreatePost}>Create Post</Button>
-      </Form>
+      <PostDetails
+        imgUrl={post.imageUrl}
+        title={post.title}
+        description={post.description}
+      />
     </Container>
   );
 }
 
-export default CreatePost;
+export default PostPage;

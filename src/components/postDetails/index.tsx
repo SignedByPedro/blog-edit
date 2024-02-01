@@ -8,7 +8,12 @@ interface PostDetailsProps {
 
 export function PostDetails({ imgUrl, title, description }: PostDetailsProps) {
   return (
-    <Card>
+    <Card
+      style={{
+        backgroundColor: "black",
+        color: "white",
+      }}
+    >
       <CardBody>
         <Row>
           <Col>
