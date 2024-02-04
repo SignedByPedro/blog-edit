@@ -12,6 +12,7 @@ export function PostDetails({ imgUrl, title, description }: PostDetailsProps) {
       style={{
         backgroundColor: "black",
         color: "white",
+        borderRadius: "10px",
       }}
     >
       <CardBody>

@@ -18,11 +18,13 @@ export function CardComponent({
   return (
     <Card
       style={{
+        backgroundColor: "black",
+        color: "white",
+        borderRadius: "10px",
         width: "18rem",
         padding: "15px",
         cursor: "pointer",
-        backgroundColor: "black",
-        color: "white",
+        marginBottom: "10px",
       }}
       onClick={() => handleCardClick(id)}
     >

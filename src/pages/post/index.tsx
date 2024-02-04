@@ -24,7 +24,7 @@ function PostPage() {
   }, [id]);
 
   if (!post) {
-    return <div>Post não existe</div>;
+    return <div>Post doesn't exist</div>;
   }
 
   return (
